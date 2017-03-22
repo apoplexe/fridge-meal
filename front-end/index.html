@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html ng-app="mealMaker">
+<head>
+	<title>Fridge Meal</title>
+	<link rel="shortcut icon" href="">
+	<link rel="stylesheet" type="text/css" href="css/fridgemeal.css" 	>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+</head>
+
+<body>
+	<header id="header" header></header><!-- /header -->
+	<div class="container-fluid main" ng-controller="cookSomethin as cook" >
+		<div class="row">
+			<div class=" col-xs-6 col-md-4 products"><!--premier col-->
+				<h3>products</h3>
+				<ul id="products_list" droppable>
+					<li class="product" id="{{$index}}" ng-repeat="product in module.products" draggable>{{ product.name }}</li>
+				</ul>
+			</div>
+						
+			<div  class="dropzone col-xs-6 col-md-4" id="dropper" droppable></div><!--deuxième col -->			
+		
+			<div class="meal col-xs-6 col-md-4"><!--troisième col -->
+				<h3>recipe</h3>
+				<ul>
+					<li class="recipe" id="{{$index}}a" ng-repeat="recipe in module.recipes">{{ recipe.name }}</li>
+				</ul>
+			</div>																	
+		</div>			
+	</div>
+
+	<footer>
+		<span>site réalisé par Thierry Lermitte</span>
+	</footer>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
+	<script src="http://code.angularjs.org/1.6.1/angular-route.min.js"></script>
+    <script type="text/javascript" src="js/mealMaker.js"></script>
+    <script type="text/javascript" src="js/directives/dragg.js"></script>
+    <script type="text/javascript" src="js/directives/header.js"></script>
+
+    <script type="text/javascript" src="js/controllers/getjson.js"></script>
+
+</body>
+</html>
