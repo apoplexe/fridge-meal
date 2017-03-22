@@ -11,32 +11,25 @@
 	<header id="header" header></header><!-- /header -->
 	<div class="container-fluid main" ng-controller="cookSomethin as cook" >
 		<div class="row">
-			<div class=" col-xs-6 col-md-4 products"><!--premier col-->
-				<h3>products</h3>
-				<ul id="products_list" droppable>
-					<li class="product" id="{{$index}}" ng-repeat="product in module.products" draggable>{{ product.name }}</li>
-				</ul>
-			</div>
+			<div class=" col-xs-6 col-md-4 products" products-list></div>
 						
-			<div  class="dropzone col-xs-6 col-md-4" id="dropper" droppable></div><!--deuxième col -->			
+			<div  class="dropzone col-xs-6 col-md-4" id="dropper" droppable></div>			
 		
-			<div class="meal col-xs-6 col-md-4"><!--troisième col -->
-				<h3>recipe</h3>
-				<ul>
-					<li class="recipe" id="{{$index}}a" ng-repeat="recipe in module.recipes">{{ recipe.name }}</li>
-				</ul>
-			</div>																	
+			<div class="meal col-xs-6 col-md-4" recipes-list></div>
 		</div>			
 	</div>
 
-	<footer>
-		<span>site réalisé par Thierry Lermitte</span>
-	</footer>
+	<footer footer></footer>
+
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
 	<script src="http://code.angularjs.org/1.6.1/angular-route.min.js"></script>
     <script type="text/javascript" src="js/mealMaker.js"></script>
     <script type="text/javascript" src="js/directives/dragg.js"></script>
     <script type="text/javascript" src="js/directives/header.js"></script>
+    <script type="text/javascript" src="js/directives/footer.js"></script>
+    <script type="text/javascript" src="js/directives/products.container.js"></script>
+    <script type="text/javascript" src="js/directives/products.list.js"></script>
+    <script type="text/javascript" src="js/directives/recipes.list.js"></script>
 
     <script type="text/javascript" src="js/controllers/getjson.js"></script>
 
