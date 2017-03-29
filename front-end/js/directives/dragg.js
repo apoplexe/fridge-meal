@@ -1,5 +1,7 @@
 'use strict';
 
+var productListArray = [];
+
 angular
 	.module('mealMaker')
 	.directive('draggable', function() {
@@ -75,6 +77,17 @@ angular
 
 			        var item = document.getElementById(e.dataTransfer.getData('Text'));
 			        this.appendChild(item);
+
+			        if(this.classList.contains('dropzone')){
+			        	productListArray.push(item.innerText);
+			        }else{
+			        	var elemName = item.innerText;
+			        	var elementToRemove = productListArray.indexOf(elemName);
+			        	
+			        	productListArray.splice(elementToRemove, 1);
+			        };
+			        console.log(productListArray);
+
 
 			        return false;
 			    },

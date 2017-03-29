@@ -1,12 +1,14 @@
-'use strict';
+(function(){
+
+	'use strict';
 
 	angular
-	.module('mealMaker')
-	.controller('cookSomethin', cookSomethin);
+		.module('mealMaker')
+		.controller('cookSomethin', cookSomethin);
 
-function cookSomethin($scope, $http){
-	$http.get('js/products.js').then(function(res){
-		$scope.module = res.data;
-	});
-};
 
+	function cookSomethin($scope, reciper){
+		$scope.reciper = reciper
+	};
+
+})();

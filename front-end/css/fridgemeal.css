@@ -26,7 +26,12 @@ footer{
 #dropper {
     height: 15em;
     border: 1px solid #aaaaaa;
+    margin-top: 3.35em;
 }
 ul{
 	padding: 20px;
+    border: 1px solid black;
+}
+.over{
+    background-color: red;
 }
