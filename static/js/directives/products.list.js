@@ -1,6 +1,8 @@
+'use strict';
+
 angular
 	.module('mealMaker')
-	.directive('productsContainer', function(){
+	.directive('productsList', function(){
 		// Runs during compile
 		return {
 			// name: '',
@@ -11,12 +13,12 @@ angular
 			// require: 'ngModel', // Array = multiple requires, ? = optional, ^ = check parent elements
 			restrict: 'A', // E = Element, A = Attribute, C = Class, M = Comment
 			// template: '',
-			templateUrl: 'partials/products-container.html',
+			templateUrl: 'partials/products-list.html',
 			replace: true,
 			// transclude: true,
 			// compile: function(tElement, tAttrs, function transclude(function(scope, cloneLinkingFn){ return function linking(scope, elm, attrs){}})),
 			//link: function($scope, iElm, iAttrs, controller) {
-				
+
 			//}
 		};
 	});

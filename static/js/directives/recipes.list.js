@@ -1,3 +1,5 @@
+'use strict';
+
 angular
 	.module('mealMaker')
 	.directive('recipesList', function(){
@@ -6,7 +8,7 @@ angular
 			// name: '',
 			// priority: 1,
 			// terminal: true,
-			//scope: {}, 
+			//scope: {},
 
 			// {} = isolate, true = child, false/undefined = no change
 			// controller: function($scope, $element, $attrs, $transclude) {},
@@ -19,7 +21,7 @@ angular
 			// compile: function(tElement, tAttrs, function transclude(function(scope, cloneLinkingFn){ return function linking(scope, elm, attrs){}})),
 			//link: function(scope, iElm, iAttrs, controller) {
 
-				
+
 			//}
 		};
 

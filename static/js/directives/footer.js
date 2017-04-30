@@ -1,3 +1,5 @@
+'use strict';
+
 angular
 	.module('mealMaker')
 	.directive('footer', function(){
@@ -12,11 +14,11 @@ angular
 			restrict: 'A', // E = Element, A = Attribute, C = Class, M = Comment
 			// template: '',
 			templateUrl: 'partials/footer.html',
-			replace: true,
+			replace: true
 			// transclude: true,
 			// compile: function(tElement, tAttrs, function transclude(function(scope, cloneLinkingFn){ return function linking(scope, elm, attrs){}})),
 			//link: function($scope, iElm, iAttrs, controller) {
-				
+
 			//}
 		};
 	});

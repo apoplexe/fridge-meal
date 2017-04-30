@@ -2,6 +2,3 @@
 
 angular
 	.module('mealMaker', []);
-
-
-
