@@ -3,8 +3,8 @@ angular
 	.factory('reciper', function($http){
 
 		var reciper = {
-			async: function(){
-				var promise = $http.get('/recipes?products=').then(function(response){
+			async: function(productsList){
+				var promise = $http.get('/recipes?products='+ productsList).then(function(response){
 					return response.data;
 				});
 				return promise;

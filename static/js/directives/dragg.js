@@ -36,10 +36,12 @@ angular
 .module('mealMaker')
 .directive('droppable', function() {
 	return {
-		scope: {},
+		scope: {
+		},
+		controller: 'cookSomethin',
+		bindToController: true,
 		link: function(scope, element, attrs, controller) {
 			var el = element[0];
-
 			el.addEventListener(
 				'dragover',
 				function(e) {
@@ -76,18 +78,19 @@ angular
 					this.classList.remove('over');
 
 					var item = document.getElementById(e.dataTransfer.getData('Text'));
-					console.log(el);
 					this.appendChild(item);
 
-					if(this.classList.contains('dropzone')){
-						productListArray.push(item.innerText);
+					var numItemId = parseInt(item.id);
+
+					if (this.classList.contains('dropzone')) {
+						if (productListArray.indexOf(item.id) == -1) {
+							productListArray.push(item.id);
+						}
 					}else{
-						var elemName = item.innerText;
-						var elementToRemove = productListArray.indexOf(elemName);
+						productListArray.splice(productListArray.indexOf(item.id), 1);
+					}
 
-						productListArray.splice(elementToRemove, 1);
-					};
-
+					console.log(productListArray);
 
 					return false;
 				},
