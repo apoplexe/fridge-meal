@@ -7,14 +7,24 @@
 	.controller('cookSomethin', cookSomethin);
 
 	function cookSomethin($scope, products, reciper){
+		$scope.productsList = reciper.productsList;
 
-		products.async().then(function(d){
-			$scope.productsList = d;
-		});
+		this.products = function(){
+			products.async().then(function(d){
+				$scope.productsListe = d;
+			});
+		};
 
-		reciper.async($scope.products).then(function(d){
-			$scope.recipes = d;
-		});
+		this.products();
+
+
+		this.reciper = function (productsList){
+			reciper.async(productsList).then(function(d){
+				$scope.recipes = d;
+			});
+		};
+
+		$scope.$watch($scope.productsList, console.log("llklk"));
 
 	};
 

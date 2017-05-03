@@ -1,47 +1,58 @@
-'use strict';
+(function(){
 
-var productListArray = [];
+	'use strict';
 
-angular
-.module('mealMaker')
-.directive('draggable', function() {
-	return function(scope, element) {
-		var el = element[0];
+	angular
+	.module('mealMaker')
+	.directive('draggable', draggable)
+	.directive('droppable', ['reciper', droppable]);
 
-		el.draggable = true;
+	function draggable() {
+		var draggable = {
+			link: linkFunc
+		}
+		return draggable;
 
-		el.addEventListener(
-			'dragstart',
-			function(e) {
-				e.dataTransfer.effectAllowed = 'move';
-				e.dataTransfer.setData('Text', this.id);
-				this.classList.add('drag');
-				return false;
-			},
-			false
-		);
-
-		el.addEventListener(
-			'dragend',
-			function(e) {
-				this.classList.remove('drag');
-				return false;
-			},
-			false
-		);
-	}
-});
-
-angular
-.module('mealMaker')
-.directive('droppable', function() {
-	return {
-		scope: {
-		},
-		controller: 'cookSomethin',
-		bindToController: true,
-		link: function(scope, element, attrs, controller) {
+		function linkFunc(scope, element){
 			var el = element[0];
+
+			el.draggable = true;
+
+			el.addEventListener(
+				'dragstart',
+				function(e) {
+					e.dataTransfer.effectAllowed = 'move';
+					e.dataTransfer.setData('Text', this.id);
+					this.classList.add('drag');
+					return false;
+				},
+				false
+			);
+
+			el.addEventListener(
+				'dragend',
+				function(e) {
+					this.classList.remove('drag');
+					return false;
+				},
+				false
+			);
+		}
+	};
+
+	function droppable(reciper) {
+		var droppable = {
+			scope: {},
+			controller: 'cookSomethin',
+			bindToController: true,
+			link: linkFunc
+		}
+
+		return droppable;
+
+		function linkFunc(scope, element, attrs, controller) {
+			var el = element[0];
+
 			el.addEventListener(
 				'dragover',
 				function(e) {
@@ -82,21 +93,24 @@ angular
 
 					var numItemId = parseInt(item.id);
 
+					var productList = scope.productList;
+					productList= reciper.productList;
+
 					if (this.classList.contains('dropzone')) {
-						if (productListArray.indexOf(item.id) == -1) {
-							productListArray.push(item.id);
+						if (productList.indexOf(item.id) == -1) {
+							productList.push(item.id);
 						}
 					}else{
-						productListArray.splice(productListArray.indexOf(item.id), 1);
-					}
+						productList.splice(productList.indexOf(item.id), 1);
+					};
 
-					console.log(productListArray);
+					scope.$watch(productList, console.log(productList+"salut"));
 
 					return false;
 				},
 				false
 			);
+		};
+	};
 
-		},
-	}
-});
+})();

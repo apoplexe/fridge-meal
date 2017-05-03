@@ -10,22 +10,20 @@
 
 <body>
 	<header id="header" header></header>
+
 	<div class="container-fluid main" ng-controller="cookSomethin as cook" >
 		<div class="row">
-			<div class=" col-xs-4 col-md-4 col-lg-4 col-sm-4 products" products-list></div>
+			<div class="col-xs-4 col-md-4 col-lg-4 col-sm-4 products" products-list></div>
 
-			<div  class="dropzone col-xs-4 col-md-4 col-lg-4 col-sm-4" id="dropper" droppable></div>
+			<div  class="dropzone col-xs-4 col-md-4 col-lg-4 col-sm-4" ng-model="reciper.productsList" id="dropper" droppable></div>
 
 			<div class="meal col-xs-4 col-md-4 col-lg-4 col-sm-4" recipes-list></div>
 		</div>
 
 		<div class="add-recipe" add-form></div>
-		<div class="" directive>
-			wesh
-		</div>
 
-		</div>
 	</div>
+
 	<footer footer></footer>
 
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
@@ -46,9 +44,6 @@
 	<script type="text/javascript" src="js/directives/footer.js"></script>
 	<script type="text/javascript" src="js/directives/dragg.js"></script>
 	<script type="text/javascript" src="js/directives/add-form.js"></script>
-
-
-
 
 </body>
 </html>
