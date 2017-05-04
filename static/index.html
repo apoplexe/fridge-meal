@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app="mealMaker">
+<html ng-app="fridgeMeal">
 <head>
 	<title>Fridge Meal</title>
 	<link rel="shortcut icon" href="">
@@ -11,11 +11,11 @@
 <body>
 	<header id="header" header></header>
 
-	<div class="container-fluid main" ng-controller="cookSomethin as cook" >
+	<div class="container-fluid main" >
 		<div class="row">
 			<div class="col-xs-4 col-md-4 col-lg-4 col-sm-4 products" products-list></div>
 
-			<div  class="dropzone col-xs-4 col-md-4 col-lg-4 col-sm-4" ng-model="reciper.productsList" id="dropper" droppable></div>
+			<div  class="dropzone col-xs-4 col-md-4 col-lg-4 col-sm-4" id="dropper" droppable></div>
 
 			<div class="meal col-xs-4 col-md-4 col-lg-4 col-sm-4" recipes-list></div>
 		</div>
@@ -29,17 +29,17 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
 	<script src="http://code.angularjs.org/1.6.1/angular-route.min.js"></script>
 
-	<script type="text/javascript" src="js/mealMaker.js"></script>
+	<script type="text/javascript" src="js/fridge-meal.js"></script>
 
 	<script type="text/javascript" src="js/services/recipesMatch.js"></script>
 	<script type="text/javascript" src="js/services/getProductsList.js"></script>
 
 
-	<script type="text/javascript" src="js/controllers/getjson.js"></script>
+	<script type="text/javascript" src="js/controllers/productsCtrl.js"></script>
+	<script type="text/javascript" src="js/controllers/recipesCtrl.js"></script>
 
-	<script type="text/javascript" src="js/directives/recipes.list.js"></script>
-	<script type="text/javascript" src="js/directives/products.list.js"></script>
-	<script type="text/javascript" src="js/directives/products.container.js"></script>
+	<script type="text/javascript" src="js/directives/recipes-list.js"></script>
+	<script type="text/javascript" src="js/directives/products-list.js"></script>
 	<script type="text/javascript" src="js/directives/header.js"></script>
 	<script type="text/javascript" src="js/directives/footer.js"></script>
 	<script type="text/javascript" src="js/directives/dragg.js"></script>

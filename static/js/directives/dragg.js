@@ -3,7 +3,7 @@
 	'use strict';
 
 	angular
-	.module('mealMaker')
+	.module('fridgeMeal')
 	.directive('draggable', draggable)
 	.directive('droppable', ['reciper', droppable]);
 
@@ -43,8 +43,8 @@
 	function droppable(reciper) {
 		var droppable = {
 			scope: {},
-			controller: 'cookSomethin',
-			bindToController: true,
+			// controller: 'recipesCtrl',
+			// bindToController: true,
 			link: linkFunc
 		}
 
@@ -91,21 +91,17 @@
 					var item = document.getElementById(e.dataTransfer.getData('Text'));
 					this.appendChild(item);
 
-					var numItemId = parseInt(item.id);
-
-					var productList = scope.productList;
-					productList= reciper.productList;
+					scope.pList = reciper.data;
 
 					if (this.classList.contains('dropzone')) {
-						if (productList.indexOf(item.id) == -1) {
-							productList.push(item.id);
+						if (scope.pList.productList.indexOf(item.id) == -1) {
+							scope.pList.productList.push(item.id);
 						}
 					}else{
-						productList.splice(productList.indexOf(item.id), 1);
+						scope.pList.productList.splice(scope.pList.productList.indexOf(item.id), 1);
 					};
 
-					scope.$watch(productList, console.log(productList+"salut"));
-
+					console.log(scope.pList);
 					return false;
 				},
 				false

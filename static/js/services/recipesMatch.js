@@ -1,15 +1,24 @@
-angular
-	.module("mealMaker")
-	.factory('reciper', function($http){
+(function() {
+	'use strict';
 
+	angular
+	.module('fridgeMeal')
+	.factory('reciper', reciper);
+
+	function reciper($http) {
 		var reciper = {
-			productList: [],
-			async: function(productsList){
-				var promise = $http.get('/recipes?products='+ productsList).then(function(response){
-					return response.data;
-				});
-				return promise;
-			}
+			data: {
+				productList: [5]
+			},
+			async: async
 		};
 		return reciper;
-	});
+
+		function async(productList){
+			var promise = $http.get('/recipes?products='+ productList).then(function(response){
+				return response.data;
+			});
+			return promise;
+		}
+	}
+})();
