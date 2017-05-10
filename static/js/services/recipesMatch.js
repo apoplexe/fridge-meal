@@ -8,7 +8,7 @@
 	function reciper($http) {
 		var reciper = {
 			data: {
-				productList: [5]
+				productList: [2]
 			},
 			async: async
 		};

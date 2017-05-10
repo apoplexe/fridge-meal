@@ -14,13 +14,13 @@
       },
       link: linkFunc,
       controller: 'recipesCtrl',
-      bindToController: true
+      // bindToController: true
     };
 
     return recipesList;
 
     function linkFunc(scope, el, attr, ctrl) {
-    
+
     }
   };
 

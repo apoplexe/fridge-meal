@@ -6,16 +6,16 @@
   .controller('recipesCtrl', recipesCtrl);
 
   function recipesCtrl($scope, reciper) {
-    $scope.pList = reciper.data;
+    $scope.productListVariation = [];
 
-    console.log($scope.pList.productList);
+    this.reciper = function (productList){
+      reciper.async(productList).then(function(d){
+        $scope.recipes = d;
+      });
+    };
 
+    $scope.$watch('productListVariation', console.log("test"), true);
 
-    // this.reciper = function (productList){
-    //   reciper.async(productList).then(function(d){
-    //     $scope.recipes = d;
-    //   });
-    // };
-    // this.reciper();
   };
+
 })();

@@ -15,7 +15,6 @@
 
 		function linkFunc(scope, element){
 			var el = element[0];
-
 			el.draggable = true;
 
 			el.addEventListener(
@@ -42,7 +41,9 @@
 
 	function droppable(reciper) {
 		var droppable = {
-			scope: {},
+			scope: {
+				productsMatchList : '=matchList',
+			},
 			// controller: 'recipesCtrl',
 			// bindToController: true,
 			link: linkFunc
@@ -52,7 +53,6 @@
 
 		function linkFunc(scope, element, attrs, controller) {
 			var el = element[0];
-
 			el.addEventListener(
 				'dragover',
 				function(e) {
@@ -84,24 +84,30 @@
 			el.addEventListener(
 				'drop',
 				function(e) {
-					if (e.stopPropagation) e.stopPropagation();
+					if (e.stopPropagation) {
+						e.stopPropagation();
+					};
 
 					this.classList.remove('over');
 
 					var item = document.getElementById(e.dataTransfer.getData('Text'));
 					this.appendChild(item);
 
-					scope.pList = reciper.data;
-
 					if (this.classList.contains('dropzone')) {
-						if (scope.pList.productList.indexOf(item.id) == -1) {
-							scope.pList.productList.push(item.id);
+						if (scope.productsMatchList>0) {
+							if (scope.productsMatchList.indexOf(item.id) === -1) {
+								// scope.productsMatchList.push(item.id);
+								console.log("ok");
+							}
+						}else{
+							// console.log(productsMatchList.productListVariation);
+							// scope.productsMatchList.push(item.id);
 						}
 					}else{
-						scope.pList.productList.splice(scope.pList.productList.indexOf(item.id), 1);
-					};
+						scope.productsMatchList.splice(scope.productsMatchList.indexOf(item.id), 1);
+					}
 
-					console.log(scope.pList);
+
 					return false;
 				},
 				false

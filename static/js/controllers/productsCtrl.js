@@ -12,7 +12,6 @@
 				$scope.productsListe = d;
 			});
 		};
-		console.log("lklk");
 		this.products();
 	};
 
