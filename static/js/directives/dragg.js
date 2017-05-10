@@ -41,6 +41,7 @@
 
 	function droppable(reciper) {
 		var droppable = {
+			restrict: 'EA',
 			scope: {
 				productsMatchList : '=matchList',
 			},
@@ -93,20 +94,20 @@
 					var item = document.getElementById(e.dataTransfer.getData('Text'));
 					this.appendChild(item);
 
+
 					if (this.classList.contains('dropzone')) {
-						if (scope.productsMatchList>0) {
-							if (scope.productsMatchList.indexOf(item.id) === -1) {
-								// scope.productsMatchList.push(item.id);
-								console.log("ok");
-							}
-						}else{
-							// console.log(productsMatchList.productListVariation);
-							// scope.productsMatchList.push(item.id);
+						if (scope.productsMatchList.indexOf(item.id) === -1) {
+							scope.productsMatchList.push(item.id);
 						}
 					}else{
 						scope.productsMatchList.splice(scope.productsMatchList.indexOf(item.id), 1);
 					}
 
+					scope.$watch('productsMatchList', function(){
+						if(scope.productsMatchList > 0){
+							scope.productsMatchList = "lklkl";
+						};
+					}, true);
 
 					return false;
 				},
