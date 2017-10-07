@@ -1,19 +1,11 @@
-const productsDtv = ()=> {
-  let productsDtv = {
-    bindToController: true,
-    controller: 'productsCtrl',
-    link: linkFunc,
-    replace: true,
-    restrict: 'EA',
-    scope: {},
-    templateUrl: './partials/products-list.html'
+class productsDtv{
+  constructor(){
+    this.replace          = true;
+    this.restrict         = 'A';
+    this.templateUrl      = './partials/products-list.html';
   }
-
-  return productsDtv;
-
-  function linkFunc(scope, elem){
-    //dom manipulation
-  };
+  link(scope, elem, attrs){
+  }
 }
 
 export default productsDtv;

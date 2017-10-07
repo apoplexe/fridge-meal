@@ -1,24 +1,27 @@
-import productsCtrl from './js/controllers/productsCtrl.js';
-import recipesCtrl  from './js/controllers/recipesCtrl.js';
+import productsSvc  from './js/services/productsSvc.js';
+import recipesSvc   from './js/services/recipesSvc.js';
 
-import header       from './js/directives/header.js';
-import footer       from './js/directives/footer.js';
+import recipesCtrl  from './js/controllers/recipesCtrl.js';
+import matcherCtrl  from './js/controllers/matcherCtrl.js';
+
+import headerDtv    from './js/directives/headerDtv.js';
+import footerDtv    from './js/directives/footerDtv.js';
 import productsDtv  from './js/directives/productsDtv.js';
 import recipesDtv   from './js/directives/recipesDtv.js';
+import matcherDtv   from './js/directives/matcherDtv.js';
 
-import getRecipes   from './js/services/getRecipes.js';
-import getProducts  from './js/services/getProducts.js';
+export default angular.module('matcher', []);
 
-export default angular
-.module('matcher', [])
-.controller('recipesCtrl', recipesCtrl)
-.controller('productsCtrl', productsCtrl)
+angular
+.module('matcher')
+.factory('productsSvc',      ($http) => new productsSvc($http))
+.factory('recipesSvc',       ($http) => new recipesSvc($http))
 
-.directive('header', header)
-.directive('footer', footer)
-.directive('productsDtv', productsDtv)
-.directive('recipesDtv', recipesDtv)
+.controller('recipesCtrl',   recipesCtrl)
+.controller('matcherCtrl',   matcherCtrl)
 
-
-.service('getRecipes', getRecipes)
-.service('getProducts', getProducts);
+.directive('headerDtv',      () => new headerDtv())
+.directive('footerDtv',      () => new footerDtv())
+.directive('productsDtv',    () => new productsDtv())
+.directive('recipesDtv',     () => new recipesDtv())
+.directive('matcherDtv',     () => new matcherDtv());

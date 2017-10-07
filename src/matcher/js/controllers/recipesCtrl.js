@@ -1,14 +1,24 @@
-export default class recipesCtrl{
-  constructor(getRecipes, productListVariation){
-    this.productListVariation = getRecipes.data.productList;
+class recipesCtrl{
+  constructor(recipesSvc){
+    this.recipesList = [];
+    this.productList = [];
+    this.recipesResult(recipesSvc);
   }
-  getRecipes(productListVariation){
-    getRecipes.async(productListVariation).then(
+  recipesResult(recipesSvc) {
+    let p;
+
+    if (this.productList.length > 0) {
+      p = this.productList;
+    }
+
+    recipesSvc.recipesMatcher(p).then(
       d => {
-        this.recipes = d;
+        this.recipesList = d.data;
       }
     )
   }
 }
 
-recipesCtrl.$inject = ['getRecipes'];
+recipesCtrl.$inject = ['recipesSvc'];
+
+export default recipesCtrl;

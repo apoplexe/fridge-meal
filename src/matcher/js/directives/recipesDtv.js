@@ -1,19 +1,14 @@
-const recipesDtv = ()=> {
-  let recipesDtv = {
-    bindToController: true,
-    controller: 'recipesCtrl',
-    link: linkFunc,
-    replace: true,
-    restrict: 'EA',
-    scope: {},
-    templateUrl: './partials/recipes-list.html'
+class recipesDtv{
+  constructor(){
+    this.bindToController = true;
+    this.controller       = 'recipesCtrl as recipes';
+    this.replace          = true;
+    this.restrict         = 'A';
+    // this.scope            = {};
+    this.templateUrl      = './partials/recipes-list.html';
   }
-
-  return recipesDtv;
-
-  function linkFunc(scope, elem){
-    //dom manipulation
-  };
+  link(scope, elem, attrs){
+  }
 }
 
 export default recipesDtv;

@@ -6,21 +6,32 @@ app = Flask(__name__)
 
 
 products= [
-    {"id": 0, "name": "pomme"},
+    {"id": 0, "name": "pastèque"},
     {"id": 1, "name": "steak"},
     {"id": 2, "name": "fromage"}
 ]
 
 recipes = [
     {"id": 0, "name": "tarte", "products":[2, 1]},
-    {"id": 1, "name": "blanquette", "products": [3]},
-    {"id": 2, "name": "pareo", "products": [2, 3]}
+    {"id": 1, "name": "blanquette", "products": [0]},
+    {"id": 2, "name": "pareo", "products": [2, 0]}
+]
+
+error_msg = [
+    {"name": "Glissez-déposez un ingrédient pour trouver une recette adaptée !"}
+]
+await_product = [
+    {"name": "Glissez-déposez un ingrédient ici !"}
 ]
 
 def match(recipe, products):
-    for p in products:
-        if int(p) not in recipe['products']:
-            return False
+    if products[0] == 'undefined':
+        return jsonify(error_msg)
+    else:
+        for p in products:
+            print('salut jojo ' + p)
+            if int(p) not in recipe['products']:
+                return False
 
     return True
 
@@ -29,9 +40,8 @@ def match(recipe, products):
 def search_recipes():
     products = request.args.get('products', "")
 
-    if len(products) == 0:
-        return jsonify(recipes)
-
+    if len(products) == 0 or products == 'undefined':
+        return jsonify(error_msg)
 
     products = products.split(',')
     results = []
@@ -44,6 +54,9 @@ def search_recipes():
 
 @app.route('/products')
 def search_products():
+    # if len(products) == 0 or products == 'undefined':
+    #     return jsonify(products)
+
     return jsonify(products)
 
 if __name__=='__main__':
