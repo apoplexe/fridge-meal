@@ -9,7 +9,6 @@ class droppableDtv{
             'drop',
             e => {
                 const item = document.querySelector('#' + e.dataTransfer.getData('text'));
-                const itemId = item.id.split('-').slice(-1).join();
 
                 el.classList.remove('dropping');
 
@@ -17,7 +16,7 @@ class droppableDtv{
                     e.stopPropagation();
                 };
 
-                scope.vm.match(itemId);
+                scope.vm.match(item, el);
 
                 return false;
             }

@@ -1,7 +1,7 @@
 <article>
   <h3>matcher</h3>
 
-  <ul class="dropzone" data-droppable-dtv="droppable">
-    <li ng-repeat="p in vm.productsMatch">{{ p.name }}</li>
+  <ul class="matcher-zone" data-droppable-dtv="droppable">
+    <li class="match" data-draggable-dtv="draggable" id="match-{{$index}}" ng-repeat="p in vm.productsMatch">{{ p.name }}</li>
   </ul>
 </article>
