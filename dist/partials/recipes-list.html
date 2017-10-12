@@ -1,7 +1,15 @@
-<article>
+<article ng-controller="recipesCtrl as ctrl">
 	<h3>recipe</h3>
 
 	<ul>
 		<li class="recipe" id="recipe-{{$index}}" ng-repeat="recipe in vm.recipesList">{{ recipe.name }}</li>
 	</ul>
+
+	<p>{{ ctrl.test }}</p>
+
+	<form class="recipe-add" method="post" ng-submit='ctrl.addRecipe()'>
+		<label for="recipe-name">Recipe's name</label>
+		<input id="recipe-name" name="recipe" ng-model="ctrl.recipe.name" type="text" value="recipe">
+		<input type="submit" value="add recipe">
+	</form>
 </article>

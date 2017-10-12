@@ -2,7 +2,7 @@ class productsSvc{
 	constructor($http){
 		this.$http = $http;
 	}
-	productsFinder(){
+	getProducts(){
 		return this.$http.get('/products');
 	}
 }

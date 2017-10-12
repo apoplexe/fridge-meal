@@ -44,14 +44,14 @@ class matcherCtrl{
             }
         }
 
-        this.recipesSvc.recipesMatcher(productsId).then(
+        this.recipesSvc.getRecipes(productsId).then(
             d => {
                 this.recipesList = d.data;
             }
         );
     }
     productResult(){
-        this.productsSvc.productsFinder()
+        this.productsSvc.getProducts()
         .then(
             d => {
                 this.productList = d.data;
@@ -65,7 +65,7 @@ class matcherCtrl{
             p = this.productList;
         }
 
-        this.recipesSvc.recipesMatcher(p).then(
+        this.recipesSvc.getRecipes(p).then(
             d => {
                 this.recipesList = d.data;
             }

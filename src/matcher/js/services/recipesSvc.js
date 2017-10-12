@@ -2,8 +2,11 @@ class recipesSvc{
 	constructor($http){
 		this.$http = $http;
 	}
-	recipesMatcher(productList){
+	getRecipes(productList){
 		return this.$http.get('/recipes?products='+ productList);
+	}
+	postRecipes(recipe){
+		return this.$http.post('/add'+ recipe);
 	}
 }
 

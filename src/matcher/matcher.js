@@ -2,6 +2,7 @@ import productsSvc  from './js/services/productsSvc.js';
 import recipesSvc   from './js/services/recipesSvc.js';
 
 import matcherCtrl  from './js/controllers/matcherCtrl.js';
+import recipesCtrl  from './js/controllers/recipesCtrl.js';
 
 import headerDtv    from './js/directives/headerDtv.js';
 import footerDtv    from './js/directives/footerDtv.js';
@@ -17,6 +18,7 @@ angular
 .factory('recipesSvc',       ($http) => new recipesSvc($http))
 
 .controller('matcherCtrl',   matcherCtrl)
+.controller('recipesCtrl',   recipesCtrl)
 
 .directive('headerDtv',      () => new headerDtv())
 .directive('footerDtv',      () => new footerDtv())
