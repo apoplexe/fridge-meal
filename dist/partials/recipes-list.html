@@ -5,11 +5,10 @@
 		<li class="recipe" id="recipe-{{$index}}" ng-repeat="recipe in vm.recipesList">{{ recipe.name }}</li>
 	</ul>
 
-	<p>{{ ctrl.test }}</p>
-
 	<form class="recipe-add" method="post" ng-submit='ctrl.addRecipe()'>
 		<label for="recipe-name">Recipe's name</label>
-		<input id="recipe-name" name="recipe" ng-model="ctrl.recipe.name" type="text" value="recipe">
+		<input id="recipe-name" name="recipe" ng-model="ctrl.recipe.name" type="text" value="recipe's name">
+		<input id="recipe-products" name="recipe products_id" ng-model="ctrl.recipe.products" type="text" value="list of product">
 		<input type="submit" value="add recipe">
 	</form>
 </article>

@@ -6,7 +6,17 @@ class recipesSvc{
 		return this.$http.get('/recipes?products='+ productList);
 	}
 	postRecipes(recipe){
-		return this.$http.post('/add'+ recipe);
+		return this.$http({
+			method: "POST",
+			url: "/recipes",
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			data: {
+				'name': recipe.name,
+				'products': recipe.products
+			}
+		});
 	}
 }
 
