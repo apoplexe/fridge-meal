@@ -2,6 +2,7 @@ class matcherCtrl{
     constructor(recipesSvc, productsSvc){
         this.wordingMatch = "Glissez-déposez ici";
         this.productsMatch = [{'name': this.wordingMatch}];
+        this.recipe = {name:'tarte à artichaut', products:'banane,choux-fleur'};
         this.productList = [];
         this.recipesList = [];
         this.recipesSvc = recipesSvc;
@@ -9,6 +10,13 @@ class matcherCtrl{
 
         this.productResult(productsSvc);
         this.recipesResult(recipesSvc);
+    }
+    addRecipe(){
+        this.recipesSvc.postRecipes(this.recipe).then((d)=>{
+            console.log(d);
+        })
+        this.productResult();
+        this.recipesResult();
     }
     match(item, el){
         let productsId = [];
@@ -25,10 +33,6 @@ class matcherCtrl{
                     this.productList.splice(i,1);
                 }
             }
-
-            for (i = 0; i < this.productsMatch.length; i++) {
-                productsId.push(this.productsMatch[i].id);
-            }
         }
 
         if (item.parentElement.classList.contains('matcher-zone') && el.classList.contains('products-zone')) {
@@ -38,10 +42,11 @@ class matcherCtrl{
                     this.productsMatch.splice(i,1);
                 }
             }
+        }
 
-            for (i = 0; i < this.productList.length; i++) {
-                productsId.splice(this.productList[i].id, 1);
-            }
+        for (i = 0; i < this.productsMatch.length; i++) {
+          console.log(this.productsMatch);
+          productsId.push(this.productsMatch[i].id);
         }
 
         this.recipesSvc.getRecipes(productsId).then(

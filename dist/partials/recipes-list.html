@@ -1,14 +1,14 @@
-<article ng-controller="recipesCtrl as ctrl">
+<article>
 	<h3>recipe</h3>
 
 	<ul>
 		<li class="recipe" id="recipe-{{$index}}" ng-repeat="recipe in vm.recipesList">{{ recipe.name }}</li>
 	</ul>
 
-	<form class="recipe-add" method="post" ng-submit='ctrl.addRecipe()'>
+	<form class="recipe-add" method="post" ng-submit='vm.addRecipe()'>
 		<label for="recipe-name">Recipe's name</label>
-		<input id="recipe-name" name="recipe" ng-model="ctrl.recipe.name" type="text" value="recipe's name">
-		<input id="recipe-products" name="recipe products_id" ng-model="ctrl.recipe.products" type="text" value="list of product">
+		<input id="recipe-name" name="recipe" ng-model="vm.recipe.name" type="text" value="recipe's name">
+		<input id="recipe-products" name="recipe products_id" ng-model="vm.recipe.products" type="text" value="list of product">
 		<input type="submit" value="add recipe">
 	</form>
 </article>

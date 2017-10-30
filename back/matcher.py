@@ -18,11 +18,19 @@ await_product = [
 ]
 
 def match(recipe, products):
+    recipe_products = []
+
+    if type(recipe['products_id']) is not list:
+        if type(recipe['products_id']) is not int:
+            recipe_products = recipe['products_id'].split(',')
+
+        recipe_products.append(recipe['products_id'])
+
     if products[0] == 'undefined':
         return jsonify(error_msg)
     else:
         for p in products:
-            if int(p) != recipe['products_id']:
+            if p not in recipe_products:
                 return False
 
     return True
@@ -64,7 +72,7 @@ def search_recipes():
             product.name = r
 
             try:
-
+                db.session.add(recipe)
                 db.session.add(product)
                 db.session.commit()
             except IntegrityError:
@@ -72,6 +80,7 @@ def search_recipes():
                 print("Duplicate entry detected!")
 
         productList = Product.query.all()
+        recipeList = Recipe.query.all()
 
         for p in productList:
             for rp in recipe_products:
