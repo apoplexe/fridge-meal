@@ -1,9 +1,12 @@
 # -*- coding:utf-8 -*-
+# -*- coding:utf-8 -*-
 
-from database import db
 from flask import Flask, request, jsonify
+from database import db
 
 import os.path
+import re
+
 from sqlalchemy.exc import IntegrityError
 
 from models import Product, Recipe
@@ -18,13 +21,14 @@ await_product = [
 ]
 
 def match(recipe, products):
-    recipe_products = []
+    recipe_products = recipe['products_id']
 
-    if type(recipe['products_id']) is not list:
-        if type(recipe['products_id']) is not int:
-            recipe_products = recipe['products_id'].split(',')
+    product_list = Product.query.all()
 
-        recipe_products.append(recipe['products_id'])
+    for pl in product_list:
+        for p, pi in enumerate(products):
+            if pl.name == pi:
+                products[p] = pl.id
 
     if products[0] == 'undefined':
         return jsonify(error_msg)
@@ -52,7 +56,18 @@ def search_recipes():
         results = []
 
         for r in recipeList:
-            recipes.append({'id': r.id, 'name': r.name, 'products_id': r.products_id})
+            rpi = r.products_id
+            rpi_list = []
+
+            if type(rpi) is int:
+                rpi_list.append(rpi)
+            elif len(rpi) > 1:
+                rpi = rpi.split(',')
+
+                for rp in rpi:
+                    rp = rpi_list.append(int(rp))
+
+            recipes.append({'id': r.id, 'name': r.name, 'products_id': rpi_list})
 
         for r in recipes:
             if match(r, products):
@@ -64,7 +79,12 @@ def search_recipes():
         recipe = Recipe()
         recipe.name = request.get_json(force=True)['name']
         recipe_products = request.get_json(force=True)['products']
-        recipe_products = recipe_products.split(',')
+        recipe_products = re.split('\W', recipe_products)
+
+        for rp in recipe_products:
+            if len(rp) == 0:
+                del(rp)
+
         products_id = []
 
         for r in recipe_products:

@@ -46,7 +46,7 @@ class matcherCtrl{
 
         for (i = 0; i < this.productsMatch.length; i++) {
           console.log(this.productsMatch);
-          productsId.push(this.productsMatch[i].id);
+          productsId.push(this.productsMatch[i].name);
         }
 
         this.recipesSvc.getRecipes(productsId).then(
