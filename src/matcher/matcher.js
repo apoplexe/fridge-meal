@@ -3,8 +3,6 @@ import recipesSvc   from './js/services/recipesSvc.js';
 
 import matcherCtrl  from './js/controllers/matcherCtrl.js';
 
-import headerDtv    from './js/directives/headerDtv.js';
-import footerDtv    from './js/directives/footerDtv.js';
 import productsDtv  from './js/directives/productsDtv.js';
 import recipesDtv   from './js/directives/recipesDtv.js';
 import matcherDtv   from './js/directives/matcherDtv.js';
@@ -18,8 +16,6 @@ angular
 
 .controller('matcherCtrl',   matcherCtrl)
 
-.directive('headerDtv',      () => new headerDtv())
-.directive('footerDtv',      () => new footerDtv())
 .directive('productsDtv',    () => new productsDtv())
 .directive('recipesDtv',     () => new recipesDtv())
 .directive('matcherDtv',     () => new matcherDtv());
