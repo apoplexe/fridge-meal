@@ -1,3 +1,4 @@
+
 const webpack = require('webpack');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
@@ -19,6 +20,11 @@ module.exports = {
                 changeOrigin: true
             },
             "/recipes": {
+                target: "http://localhost:5000",
+                secure: false,
+                changeOrigin: true
+            },
+            "/steps": {
                 target: "http://localhost:5000",
                 secure: false,
                 changeOrigin: true
@@ -59,6 +65,17 @@ module.exports = {
                 test: /\.html$/,
                 use: [
                     'html-loader'
+                ]
+            },
+            {
+                test: /\.(gif|png|jpe?g|svg)$/i,
+                use: [
+                    {
+                        loader: 'image-webpack-loader',
+                        options: {
+                            bypassOnDebug: true,
+                        }
+                    }
                 ]
             }
         ]

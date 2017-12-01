@@ -1,7 +1,16 @@
-<article>
-	<h3>products</h3>
-
-	<ul class="products-zone" data-droppable-dtv="droppable">
-		<li class="product" data-draggable-dtv="draggable" id="product-{{$index}}" ng-repeat="p in vm.productList">{{ p.name }}</li>
+<section>
+	<ul class="products-section">
+		<li class="product-categories-contain">
+			<ul class="product-categories">
+				<li class="categories-zone" ng-repeat="c in vm.catogeriesList">{{ c }}</li>
+			</ul>
+		</li>
+		<li class="products-zone-contain">
+			<ul class="products-zone" data-droppable-dtv="droppable">
+				<li class="product" data-draggable-dtv="draggable" id="product-{{ p.id }}" ng-repeat="p in vm.productList">
+					<img ng-src="img/fruits/svg/{{ p.url }}" alt="{{ p.name }}">
+				</li>
+			</ul>
+		</li>
 	</ul>
-</article>
+</section>

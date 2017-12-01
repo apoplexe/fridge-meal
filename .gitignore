@@ -1,1 +1,8 @@
 *.pyc
+node_modules/**
+share/**
+lib64/**
+lib/**
+include/**
+bin/**
+*pyvenv.cfg

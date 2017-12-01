@@ -1,16 +1,129 @@
-.matcher ul{
-  height: 15vh;
-  border: #cccccc 1px solid;
-}
-.products ul{
-  height: 20vh;
-  border: #cccccc 1px solid;
-}
-.recipes ul{
-  height: 15vh;
-  border: #cccccc 1px solid;
-}
+.base-main-contain{
+    font-family: $main_font;
 
-h3{
-    color: $titre_color;
+    ::-webkit-scrollbar-thumb{
+        width: 0px;
+        height: 0px;
+        background:transparent;
+    }
+    ::-webkit-scrollbar-track{
+        width: 0px;
+        height: 0px;
+        background:transparent;
+    }
+    ::-webkit-scrollbar{
+        width: 0px;
+        height: 0px;
+        background:transparent;
+    }
+    .base-main-matcher{
+        margin: 0 0 2% 0;
+
+        ul{
+            list-style: none;
+
+            li{
+                font-size: 1em;
+                line-height: 2;
+                text-transform: uppercase;
+                text-align: center;
+            }
+        }
+        h3{
+            color: #009FD6;
+            text-transform: capitalize;
+            font-size: 1.5em;
+            text-align: center;
+        }
+        .products {
+            background: rgba(250, 235, 215, 0.82);
+            overflow: scroll;
+
+            .products-section{
+                width: 100%;
+                display: flex;
+
+                .product-categories-contain{
+                    width: 35%;
+                }
+                .products-zone-contain{
+                    width: 65%;
+
+                    .products-zone{
+                        display: flex;
+
+                        .product{
+                            width: 10%;
+                            margin-right: 5%;
+                        }
+                    }
+                }
+            }
+        }
+        .matcher-bottom-contain{
+            display: flex;
+            justify-content: flex-start;
+            margin: 3% 0 0 0;
+
+            ul{
+                padding: 2% 4% 4% 4%;
+            }
+
+            .matcher {
+                width: 40vw;
+
+                .matcher-zone{
+                    overflow: hidden;
+                    text-align: center;
+
+                    .matcher-products{
+                        display: flex;
+
+                    }
+                    .matcher-machine{
+                        padding: 0 10% 10% 10%;
+                    }
+                }
+
+            }
+            .recipes {
+                width: 60vw;
+
+                .recipe-list{
+                    padding: 2% 2% 0 2%;
+
+                    .recipe-item{
+
+                        .recipe-category{
+                        }
+                        .recipe-name{
+                            text-transform: capitalize;
+                            font-size: 1.3em;
+                        }
+                        .step-list{
+                            overflow: scroll;
+
+                            li{
+                                font-size: 1em;
+                                text-align: center;
+                                text-transform: capitalize;
+                                line-height: 2.1;
+                                padding: 2%;
+                                border: rgba(128, 128, 128, 0.25098039215686274) 0.01em solid;
+                                margin-bottom: 1%;
+                                background: rgba(158, 255, 166, 0.4588235294117647);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .base-main-adder{
+        background: rgba(117, 191, 210, 0.62);
+
+        .form-adder-contain{
+            padding: 2% 0 0 0;
+        }
+    }
 }

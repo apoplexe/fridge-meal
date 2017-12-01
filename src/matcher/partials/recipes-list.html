@@ -1,14 +1,13 @@
-<article>
-	<h3>recipe</h3>
-
-	<ul>
-		<li class="recipe" id="recipe-{{$index}}" ng-repeat="recipe in vm.recipesList">{{ recipe.name }}</li>
+<section>
+	<ul class="recipe-list">
+		<li class="recipe-item" id="recipe-{{$index}}" ng-repeat="recipe in vm.recipesList">
+			<img class="recipe-category" ng-src="img/fruits/svg/{{ vm.recipeAvatar }}" alt="avatar of the recipe">
+			<h4 class="recipe-name">
+				{{ recipe.name }}
+			</h4>
+			<ul class="step-list">
+				<li ng-repeat="step in recipe.steps" class="class-item">{{ step }}</li>
+			</ul>
+		</li>
 	</ul>
-
-	<form class="recipe-add" method="post" ng-submit='vm.addRecipe()'>
-		<label for="recipe-name">Recipe's name</label>
-		<input id="recipe-name" name="recipe" ng-model="vm.recipe.name" type="text" value="recipe's name" />
-		<input id="recipe-products" name="recipe products_id" ng-model="vm.recipe.products" type="text" value="list of product" />
-		<input type="submit" value="add recipe" />
-	</form>
-</article>
+</section>

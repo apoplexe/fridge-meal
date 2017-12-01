@@ -1,3 +1,14 @@
+@import "reset";
+
 @import "variables";
 @import "flux/main.scss";
+@import "flux/header.scss";
 @import "../../opening/scss/op_main.scss";
+
+* {
+    /* pour maîtriser width et flex-basis */
+    box-sizing: border-box;
+}
+.hide-this{
+    display: none;
+}
