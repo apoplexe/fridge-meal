@@ -1,0 +1,13 @@
+<section>
+    <div class="matcher-zone" data-droppable-dtv="droppable">
+        <div class="matcher-machine">
+            <img ng-src="/img/machine/svg/{{ vm.machine }}" alt="machine">
+        </div>
+        <ul class="matcher-zone matcher-products">
+            <li class="match" data-draggable-dtv="draggable" id="match-{{ p.id }}" ng-repeat="p in vm.productsMatch">
+                <!-- <span class="close-product">x</span> -->
+                <img ng-src="img/fruits/svg/{{ p.url }}" alt="{{ p.name }}">
+            </li>
+        </ul>
+    </div>
+</section>

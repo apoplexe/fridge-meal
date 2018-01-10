@@ -8,6 +8,22 @@ class draggableDtv{
     el.draggable = true;
 
     elem.on(
+        'dblclick',
+        e => {
+            let id = e.path[1].id;
+            let pre_id = id.split('-')[0];
+
+            if (pre_id === 'product') {
+                scope.vm.match(true, id);
+            } else {
+                scope.vm.match(false, id);
+            }
+
+            return false;
+        }
+    )
+
+    elem.on(
       'dragstart',
       e => {
         e.dataTransfer.effectAllowed = 'move';

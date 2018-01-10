@@ -1,0 +1,18 @@
+<section>
+	<ul class="products-section">
+		<li class="product-categories-contain">
+			<span class="previous-panel"><</span>
+			<ul class="product-categories">
+				<li class="categories-zone" ng-repeat="c in vm.catogeriesList">{{ c }}</li>
+			</ul>
+			<span class="next-panel">></span>
+		</li>
+		<li class="products-zone-contain">
+			<ul class="products-zone" data-droppable-dtv="droppable">
+				<li class="product" data-draggable-dtv="draggable" id="product-{{ p.id }}" ng-repeat="p in vm.productList">
+					<img ng-src="img/fruits/svg/{{ p.url }}" alt="{{ p.name }}">
+				</li>
+			</ul>
+		</li>
+	</ul>
+</section>

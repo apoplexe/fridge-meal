@@ -1,0 +1,19 @@
+<article class="form-adder-contain">
+    <form class="form-add-recipe" method="post" ng-submit='vm.addRecipe()'>
+        <label>
+            <span>Recipe's name</span>
+            <input name="recipe" ng-model="vm.recipe.name" type="text" value="recipe's name" />
+        </label>
+
+        <label>
+            <span>Step</span>
+            <input name="step" ng-model="vm.recipe.steps" type="text" value="recipe's step" />
+        </label>
+
+        <label>
+            <span>Products</span>
+            <input id="recipe-products" name="recipe products_id" ng-model="vm.recipe.products" type="text" value="list of product" />
+            <input type="submit" value="add recipe" />
+        </label>
+    </form>
+</article>

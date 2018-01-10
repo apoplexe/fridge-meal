@@ -1,0 +1,46 @@
+header{
+    height: 6vh;
+
+    .header-contain{
+        align-items: center;
+        display: flex;
+        padding: 0 2%;
+        height: 100%;
+        color: white;
+        flex-direction: row;
+        background: rgba(251, 97, 97, 0.75);
+
+        .header-logo{
+            font-family: $logo_font;
+            font-size: 1.5em;
+            margin: 1.5%;
+        }
+
+        .header-nav {
+            align-items: center;
+            display: flex;
+            flex: 1 1 0%;
+            justify-content: space-around;
+
+            .burger-menu {
+                right: 0;
+                position: absolute;
+                margin-right: 2%;
+            }
+            .header-nav-link {
+                display: flex;
+                justify-content: flex-end;
+                margin: auto;
+                width: 100%;
+
+                li{
+                    padding-left: 2%;
+                    font-size: 1em;
+                    list-style: none;
+                    text-transform: capitalize;
+                }
+            }
+        }
+
+    }
+}
