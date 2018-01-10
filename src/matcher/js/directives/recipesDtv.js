@@ -8,6 +8,9 @@ class recipesDtv{
     this.template      = recipes;
   }
   link(scope, elem, attrs){
+      elem.on('click', ()=>{
+        
+      })
   }
 }
 

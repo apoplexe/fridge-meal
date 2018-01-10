@@ -8,7 +8,8 @@ class droppableDtv{
         elem.on(
             'drop',
             e => {
-                const item = document.querySelector('#' + e.dataTransfer.getData('text'));
+                let item = document.querySelector('#' + e.dataTransfer.getData('text'));
+                let match;
 
                 el.classList.remove('dropping');
 
@@ -16,7 +17,13 @@ class droppableDtv{
                     e.stopPropagation();
                 };
 
-                scope.vm.match(item, el);
+                if (item.parentElement.classList.contains('products-zone') && el.classList.contains('matcher-zone')) {
+                    match = true;
+                } else if (item.parentElement.classList.contains('matcher-zone') && el.classList.contains('products-zone')) {
+                    match = false;
+                }
+
+                scope.vm.match(match, item);
 
                 return false;
             }

@@ -1,13 +1,13 @@
 class matcherCtrl{
     constructor(getterSvc){
-        this.wordingMatch = "Glissez-déposez ici";
+        this.wordingMatch = "";
         this.productsMatch = [{'name': this.wordingMatch}];
         this.productList = [];
         this.recipesList = [];
         this.stepsList = [];
         this.getterSvc = getterSvc;
 
-        this.machine = 'pan.svg';
+        this.machine = 'restaurant.svg';
         this.recipeAvatar = 'cake.svg';
         this.catogeriesList = ['spices'];
         this.recipe = {
@@ -26,11 +26,15 @@ class matcherCtrl{
         this.productResult();
         this.recipesResult();
     }
-    match(item, el){
+    match(match, item){
         let productsId = [];
         let i, j;
 
-        if (item.parentElement.classList.contains('products-zone') && el.classList.contains('matcher-zone')) {
+        if (item.id !== undefined) {
+            item = item.id;
+        }
+
+        if (match === true) {
             if (this.productsMatch.length > 0 && this.productsMatch[0].name.toLowerCase() === this.wordingMatch.toLowerCase()) {
                 this.productsMatch.splice(0,1);
             }
@@ -38,18 +42,16 @@ class matcherCtrl{
             for (i = 0; i < this.productList.length; i++) {
                 let productId = 'product-' + this.productList[i].id
 
-                if (item.id === productId) {
+                if (item === productId) {
                     this.productsMatch.push(this.productList[i]);
                     this.productList.splice(i,1);
                 }
             }
-        }
-
-        if (item.parentElement.classList.contains('matcher-zone') && el.classList.contains('products-zone')) {
+        } else if (match === false ) {
             for (i = 0; i < this.productsMatch.length; i++) {
                 let matchId = 'match-' + this.productsMatch[i].id
 
-                if (item.id === matchId) {
+                if (item === matchId) {
                     this.productList.push(this.productsMatch[i]);
                     this.productsMatch.splice(i,1);
                 }

@@ -9,7 +9,7 @@ import re
 
 from sqlalchemy.exc import IntegrityError
 
-from models import Product, Recipe, Step
+from models import Product, Recipe, Step, Category, Tools
 
 app = Flask(__name__)
 
@@ -30,12 +30,12 @@ def match(recipe, products):
             if pl.name == pi:
                 products[p] = pl.id
 
-    if products[0] == 'undefined':
-        return jsonify(error_msg)
-    else:
+    try:
         for p in products:
             if p not in recipe_products:
                 return False
+    except Exception as e:
+        raise
 
     return True
 
@@ -49,8 +49,8 @@ def recipes():
         products = request.args.get('products', "")
         recipeList = Recipe.query.all()
 
-        if len(products) == 0 or products == 'undefined':
-            return jsonify(error_msg)
+        # if len(products) == 0 or products == 'undefined':
+        #     return jsonify(error_msg)
 
         products = products.split(',')
         results = []
@@ -156,3 +156,7 @@ if __name__=='__main__':
         db.create_all()
 
     app.run()
+
+# multithread
+# dependance response for json
+# modularize simple route (steps, tools, etc) / match function
