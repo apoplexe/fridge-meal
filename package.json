@@ -8,7 +8,7 @@
   "license": "MIT",
   "private": false,
   "scripts": {
-    "webpack": "webpack"
+    "run": "./fridgerun.sh",
   },
   "devDependencies": {
     "angular": "1.6.6",

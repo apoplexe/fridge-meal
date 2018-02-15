@@ -1,5 +1,4 @@
 # -*- coding:utf-8 -*-
-# -*- coding:utf-8 -*-
 
 from flask import Flask, request, jsonify
 from database import db
@@ -147,8 +146,9 @@ if __name__=='__main__':
     app.config['DEBUG'] = True
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
-    dbpath = os.path.abspath(os.getcwd()) + '/db/matcher.db'
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + dbpath
+    # dbpath = os.path.abspath(os.getcwd()) + '/db/matcher.db'
+    # app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + dbpath
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db/matcher.db'
 
     db.init_app(app)
 
