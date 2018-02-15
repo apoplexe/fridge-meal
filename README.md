@@ -10,12 +10,10 @@ These instructions will get you a copy of the project up and running on your loc
 
 What things you need to install the software and how to install them
 
-```
 [npm](https://www.npmjs.com/get-npm) ou [Yarn](https://yarnpkg.com/fr/docs/install)
 [python3.5](https://www.python.org/downloads/)
 [curl](https://curl.haxx.se/download.html)
 [screen](https://doc.ubuntu-fr.org/screen)
-```
 
 ### Installing
 
