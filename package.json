@@ -8,7 +8,7 @@
   "license": "MIT",
   "private": false,
   "scripts": {
-    "run": "./fridgerun.sh",
+    "build": "./fridgerun.sh"
   },
   "devDependencies": {
     "angular": "1.6.6",
