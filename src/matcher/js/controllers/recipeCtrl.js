@@ -8,25 +8,13 @@ class recipeCtrl{
         this.insta = false;
         this.recipe = true;
         this.recipeIn = false;
-        this.filters = [
-            {
-                name: 'name',
-                active: true
-            },
-            {
-                name: 'category',
-                active: false
-            },
-            {
-                name: 'time',
-                active: false
-            }
-        ];
-        this.$scope.$watch('vm.recipesList', this.watching());
+
+        this.$scope.$watch('vm.recipesList', this.recipeRefresh());
     }
-    watching(N, O){
-        if (this !== undefined) {
-            if (this.$scope.$parent.vm.recipesList.length === 0) {
+    recipeRefresh(N, O){
+        let recipesList = this.$scope.$parent.vm.recipesList;
+        if (this !== undefined && recipesList !== undefined) {
+            if (recipesList.length === 0) {
                 this.emptyRecipeList = N !== undefined && N !== 0 ? false : true;
             }
 

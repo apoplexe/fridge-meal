@@ -5,7 +5,6 @@ import recipeCtrl   from './js/controllers/recipeCtrl.js';
 
 import productsDtv  from './js/directives/productsDtv.js';
 import recipesDtv   from './js/directives/recipesDtv.js';
-import adderDtv     from './js/directives/adderDtv.js';
 import matcherDtv   from './js/directives/matcherDtv.js';
 import recipeListDtv   from './js/directives/recipeListDtv.js';
 
@@ -20,6 +19,5 @@ angular
 
 .directive('productsDtv',    () => new productsDtv())
 .directive('recipesDtv',     () => new recipesDtv())
-.directive('adderDtv',       () => new adderDtv())
 .directive('matcherDtv',     () => new matcherDtv())
 .directive('recipeListDtv',     () => new recipeListDtv());

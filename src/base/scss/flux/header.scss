@@ -1,14 +1,17 @@
 header{
     height: 6vh;
+    position: fixed;
+    top: 0;
+    width: 100vw;
 
     .header-contain{
         align-items: center;
-        display: flex;
-        padding: 0 2%;
-        height: 100%;
-        color: white;
-        flex-direction: row;
         background: rgba(251, 97, 97, 0.75);
+        color: white;
+        display: flex;
+        flex-direction: row;
+        height: 100%;
+        padding: 0 2%;
 
         .header-logo{
             font-family: $logo_font;
@@ -23,9 +26,10 @@ header{
             justify-content: space-around;
 
             .burger-menu {
-                right: 0;
+                cursor: pointer;
+                margin-right: 3%;
                 position: absolute;
-                margin-right: 2%;
+                right: 0;
             }
             .header-nav-link {
                 display: flex;
@@ -34,9 +38,9 @@ header{
                 width: 100%;
 
                 li{
-                    padding-left: 2%;
                     font-size: 1em;
                     list-style: none;
+                    padding-left: 2%;
                     text-transform: capitalize;
                 }
             }

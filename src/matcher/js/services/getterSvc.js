@@ -2,29 +2,12 @@ class getterSvc{
 	constructor($http){
 		this.$http = $http;
 	}
-	getSteps(){
-		return this.$http.get('/steps');
-	}
-	getProducts(){
-		return this.$http.get('/products');
-	}
-	getRecipes(productList){
-		return this.$http.get('/recipes?products='+ productList);
-	}
-	postRecipes(recipe){
-		return this.$http({
-			method: "POST",
-			url: "/recipes",
-			headers: {
-				'Content-Type': 'application/json',
-			},
-			data: {
-				'name': recipe.name,
-				'products': recipe.products,
-				'steps' : recipe.steps
-			}
-		});
-	}
+    get(url, params){
+        url = 'http://localhost:5000/' + url;
+        params = params !== undefined && params !== ''  ? '?' + params : '';
+
+        return this.$http.get(url + params)
+    }
 }
 
 getterSvc.$inject = ['$http'];

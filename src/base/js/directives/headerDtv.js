@@ -2,37 +2,22 @@ const header = require('../../partials/header.html');
 
 class headerDtv{
   constructor(){
-    // this.replace     = true;
     this.restrict    = 'A';
     this.scope       = {};
     this.template = header;
   }
-  link(scope, elem, attrs){
-      console.log(elem);
-      let logo = elem[0].children[0].children[0];
+  controller($rootScope, $scope, getterSvc){
+      $scope.shuffleRecipe = ()=>{
+          getterSvc.get('recipes_match').then(
+              d => {
+                  let recipes = d.data.results;
 
-      logo.addEventListener(
-          'mouseenter',
-          ()=>{
-              let toggleElem = document.querySelectorAll('.toggle-elem');
-
-              for (var i = 0; i < toggleElem.length; i++) {
-                  toggleElem[i].classList.remove('hide-this');
+                  $rootScope.$emit('recipe-refresh', recipes)
               }
-          }
-      );
-
-      logo.addEventListener(
-          'mouseleave',
-          ()=>{
-              let toggleElem = document.querySelectorAll('.toggle-elem');
-
-              for (var i = 0; i < toggleElem.length; i++) {
-                  toggleElem[i].classList.add('hide-this');
-              }
-          }
-      );
+          );
+      }
   }
+  link(scope, elem, attrs, ctrl){}
 }
 
 export default headerDtv;

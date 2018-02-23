@@ -2,145 +2,211 @@
 
 from flask import Flask, request, jsonify
 from database import db
+from flask_cors import CORS
 
 import os.path
 import re
 
 from sqlalchemy.exc import IntegrityError
+from sqlalchemy.sql.expression import func, select
 
-from models import Product, Recipe, Step, Category, Tools
+from models import Product, Recipe, Step, ProductCategory, RecipeCategory, Tools
 
 app = Flask(__name__)
-
-error_msg = [
-    {"name": "Cook It !"}
-]
-await_product = [
-    {"name": "Ajoutez un ingrédient à la liste"}
-]
+CORS(app)
 
 def match(recipe, products):
-    recipe_products = recipe['products_id']
+    '''
+    The parameters are compared, if the recipe's list of products
+    match the list of products, we return True
+    '''
 
+    # Need to archi that part
+    recipe_products = recipe.products_id
+
+    # Optimise this query
     product_list = Product.query.all()
 
-    for pl in product_list:
-        for p, pi in enumerate(products):
-            if pl.name == pi:
-                products[p] = pl.id
+    for product in product_list:
+        for product_attr, product_value in enumerate(products):
+            if product.id == int(product_value):
+                products[product_attr] = product.id
 
-    try:
-        for p in products:
-            if p not in recipe_products:
-                return False
-    except Exception as e:
-        raise
+    for product in products:
+        if type(recipe_products) == list:
+            for product in recipe_products:
+                product = int(product)
+        else:
+            recipe_products = recipe_products.split(',')
+            recipe_products = [int(r) for r in recipe_products]
+
+        if product not in recipe_products:
+            return False
 
     return True
 
 # /recipes?products=34,28,90
-@app.route('/recipes', methods=['GET', 'POST'])
-def recipes():
+@app.route('/recipes_match', methods=['GET'])
+def recipes_match():
+    '''
+    GET a list/int of products_id passed to the match function
+    return the recipes who matched
+    '''
+
     recipes = []
+    results = []
+    products_id_list = []
 
-    if request.method == 'GET':
+    recipe_list = Recipe.query.all()
+    products = request.args.get('products', "")
+    products = products.split(',')
 
-        products = request.args.get('products', "")
-        recipeList = Recipe.query.all()
+    if products == ['']:
+        results.append(Recipe.query.order_by(func.random()).first())
 
-        # if len(products) == 0 or products == 'undefined':
-        #     return jsonify(error_msg)
+        return jsonify(results=[re.serialize for re in results])
 
-        products = products.split(',')
-        results = []
+    for recipe in recipe_list:
+        products_id = recipe.products_id
 
-        for r in recipeList:
-            rpi = r.products_id
-            rpi_list = []
+        if type(products_id) is int:
+            products_id_list.append(products_id)
+        elif len(products_id) > 1:
+            products_id_list = products_id.split(',')
 
-            if type(rpi) is int:
-                rpi_list.append(rpi)
-            elif len(rpi) > 1:
-                rpi = rpi.split(',')
+        recipes.append(recipe)
 
-                for rp in rpi:
-                    rp = rpi_list.append(int(rp))
+    for recipe in recipes:
+        if match(recipe, products):
+            results.append(recipe)
 
-            recipes.append({'id': r.id, 'name': r.name, 'products_id': rpi_list})
+    return jsonify(results=[result.serialize for result in results])
 
-        for r in recipes:
-            if match(r, products):
-                results.append(r)
+# POST new things
 
-        return jsonify(results)
+def push(item):
+    try:
+        db.session.add(item)
+        db.session.commit()
+    except IntegrityError:
+        db.session.rollback()
+        print("Duplicate entry detected!")
 
-    if request.method == 'POST':
-        recipe = Recipe()
-        recipe.name = request.get_json(force=True)['name']
-        recipe_products = request.get_json(force=True)['products']
-        recipe_products = re.split('\W', recipe_products)
+    return False
 
-        for rp in recipe_products:
-            if len(rp) == 0:
-                del(rp)
+@app.route('/new_recipe', methods=['POST'])
+def new_recipe():
+    '''
+    Add the object sent by the user to the Recipe instance, and push it to the BDD
+    '''
+    recipe = Recipe()
+    recipe_list = Recipe.query.all()
 
-        products_id = []
+    recipe.name = request.get_json(force=True)['name']
+    recipe.products_id = request.get_json(force=True)['products_id']
 
-        for r in recipe_products:
-            product = Product()
-            product.name = r
+    push(recipe)
 
-            try:
-                db.session.add(recipe)
-                db.session.add(product)
-                db.session.commit()
-            except IntegrityError:
-                db.session.rollback()
-                print("Duplicate entry detected!")
+    return jsonify(recipe=[re.serialize for re in recipe_list])
 
-        productList = Product.query.all()
-        recipeList = Recipe.query.all()
+@app.route('/new_product', methods=['POST'])
+def new_product():
+    '''
+    Add the object sent by the user to the Product instance, and push it to the BDD
+    '''
 
-        for p in productList:
-            for rp in recipe_products:
-                if p.name == rp:
-                    products_id.append(p.id)
+    product = Product()
+    productsList = Product.query.all()
+    product.name = request.get_json(force=True)['name']
 
-        products_id = ','.join(str(e) for e in products_id)
-        recipe.products_id = products_id
+    push(product)
 
-        try:
-            db.session.add(recipe)
-            db.session.commit()
-        except IntegrityError:
-            db.session.rollback()
-            print("Duplicate entry detected!")
+    return jsonify(prod=[p.serialize for p in productsList])
 
-        return jsonify(recipes)
+@app.route('/new_tools', methods=['POST'])
+def new_tools():
+    '''
+    Add the object sent by the user to the Tools instance, and push it to the BDD
+    '''
+
+    tools = Tools()
+    toolsList = Tools.query.all()
+    tools.name = request.get_json(force=True)['name']
+
+    push(tools)
+
+    return jsonify(toolsList=[to.serialize for to in toolsList])
+
+@app.route('/new_category/<type>', methods=['POST'])
+def new_category(type):
+    '''
+    Add the object sent by the user to the Category instance, and push it to the BDD
+    '''
+
+    if type == 'product':
+        category = ProductCategory()
+        categoryList = ProductCategory.query.all()
+    elif type == 'recipe':
+        category = RecipeCategory()
+        categoryList = RecipeCategory.query.all()
+
+    category.name = request.get_json(force=True)['name']
+
+    push(category)
+
+    return jsonify(categoryList=[ca.serialize for ca in categoryList])
+
+@app.route('/new_step', methods=['POST'])
+def new_step():
+    '''
+    Add the object sent by the user to the Step instance, and push it to the BDD
+    '''
+
+    step = Step()
+    stepList = Step.query.all()
+    step.name = request.get_json(force=True)['description']
+
+    push(step)
+
+    return jsonify(stepList=[st.serialize for st in stepList])
+
+# GET simple list of each instance
 
 @app.route('/products')
 def products():
-    products = []
     productsList = Product.query.all()
 
-    if len(productsList) > 0:
-        for p in productsList:
-            products.append({'id': p.id, 'name': p.name, 'url': p.image})
-    else:
-        if len(products) == 0:
-            products.append({'id':0, 'name':await_product[0]['name']})
+    return jsonify(products=[p.serialize for p in productsList])
 
-    return jsonify(products)
+@app.route('/recipes')
+def recipes():
+    recipesList = Recipe.query.all()
+
+    return jsonify(recipes=[p.serialize for p in recipesList])
 
 @app.route('/steps')
 def steps():
-    steps = []
     stepsList = Step.query.all()
 
-    for s in stepsList:
-        steps.append({'id':s.id, 'description':s.description, 'recipe_id':s.recipe_id})
+    return jsonify(steps=[p.serialize for p in stepsList])
 
-    return jsonify(steps)
+@app.route('/tools')
+def tools():
+    toolsList = Tools.query.all()
+
+    return jsonify(tools=[p.serialize for p in toolsList])
+
+@app.route('/recipe_category')
+def recipe_category():
+    categoryList = RecipeCategory.query.all()
+
+    return jsonify(recipe_category=[p.serialize for p in categoryList])
+
+@app.route('/product_category')
+def product_category():
+    categoryList = ProductCategory.query.all()
+
+    return jsonify(product_category=[p.serialize for p in categoryList])
 
 if __name__=='__main__':
     app.config['DEBUG'] = True
@@ -156,7 +222,3 @@ if __name__=='__main__':
         db.create_all()
 
     app.run()
-
-# multithread
-# dependance response for json
-# modularize simple route (steps, tools, etc) / match function

@@ -13,17 +13,11 @@ class droppableDtv{
 
                 el.classList.remove('dropping');
 
-                if (e.stopPropagation) {
+                try {
                     e.stopPropagation();
-                };
+                } catch (e) {}
 
-                if (item.parentElement.classList.contains('products-zone') && el.classList.contains('matcher-zone')) {
-                    match = true;
-                } else if (item.parentElement.classList.contains('matcher-zone') && el.classList.contains('products-zone')) {
-                    match = false;
-                }
-
-                scope.vm.match(match, item);
+                scope.vm.move(product);
 
                 return false;
             }

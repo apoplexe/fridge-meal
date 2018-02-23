@@ -1,77 +1,31 @@
 <section ng-class="{'empty-recipe-contain': rc.emptyRecipeList}">
 	<div ng-show="rc.emptyRecipeList" class="empty-recipe">
-		<span>U should drag a product on the machine <br> or try another combinaton</span>
+		<span>Aucune recette ne correspond. <br> Invente la tienne, <br> et partage là !</span>
 	</div>
 
 	<ul ng-show="!rc.emptyRecipeList" class="recipe-list">
 		<div class="recipe-out" ng-show="!rc.recipeIn">
-			<ul class="recipe-filter-list">
-				<li class="recipe-filter-item" ng-repeat="filter in rc.filters">
-					<span>{{ filter.name }}</span>
-					<ul>
-						<li>
-							<h4 ng-if="filter.name === 'name'" ng-repeat="recipe in vm.recipesList" ng-click="rc.showRecipe(recipe.name)" class="recipe-name recipe-name-list">
-								{{ recipe.name }}
-							</h4>
-						</li>
-						<li ng-if="filter.name === 'category'" ng-repeat="recipe in vm.recipesList" ng-click="rc.showRecipe(recipe.name)" class="recipe-name recipe-category-list">
-							{{ recipe.category }}
-						</li>
-						<li ng-if="filter.name === 'time'" ng-repeat="recipe in vm.recipesList" ng-click="rc.showRecipe(recipe.name)" class="recipe-name recipe-time-list">
-							{{ recipe.time }}
-						</li>
-					</ul>
-				</li>
-			</ul>
+            <h4 ng-repeat="recipe in vm.recipesList" ng-click="rc.showRecipe(recipe.name)" class="recipe-name recipe-name-list">
+                {{ recipe.name }}
+            </h4>
 		</div>
 
 		<li class="recipe-item" id="recipe-{{$index}}" ng-repeat="recipe in vm.recipesList">
 			<div class="recipe-in" ng-if="recipe.name === rc.recipeNameMatch" ng-show="rc.recipeIn">
-				<ul class="switch-recipe-panel">
-					<li>
-						<span class="add-favorite-recipe">+</span>
-						<span class="switch-recipe"><</span>
-					</li>
-					<li>
-						<img height="50" class="insta-panel" ng-click="rc.panel('insta')" ng-src="img/icon/instagram.svg" alt="avatar of instagram">
-					</li>
-					<li>
-						<img height="50" class="recipe-panel" ng-click="rc.panel('recipe')" ng-src="img/icon/recipe.svg" alt="avatar of the recipe">
-					</li>
-					<li>
-						<img height="50" ng-click="rc.panel('infos')" class="infos-panel" ng-src="img/icon/infos.svg" alt="avatar of the recipe infos">
-					</li>
-					<li>
-						<span class="close-recipe" ng-click="rc.watching()">x</span>
-						<span class="switch-recipe">></span>
-					</li>
-				</ul>
-
-				<div ng-show="rc.recipe">
-					<h4 class="recipe-name">
-						{{ recipe.name }}
-					</h4>
+				<div class="current-recipe" ng-show="rc.recipe">
+                    <div class="header-current-recipe">
+                        <h4 class="recipe-name">
+                            {{ recipe.name }}
+                        </h4>
+                        <span class="close-recipe" ng-click="rc.close()">x</span>
+                    </div>
 					<ul class="step-list">
 						<li ng-class="{'step-item-active': $first}" data-recipe-list-dtv="recipe" ng-repeat="step in recipe.steps" class="step-item">
 							{{ step }}
 						</li>
 					</ul>
 				</div>
-
-				<li class="recipe-insta" ng-show="rc.insta">
-				</li>
-
-				<li class="cook-infos" ng-show="rc.infos">
-					<ul ng-repeat="infos in vm.cookInfos">
-						<li class="cook-people">recipe.people</li>
-						<li class="cook-time"></li>
-						<li class="cook-tools"></li>
-						<li class="cook-product-details"></li>
-					</ul>
-				</li>
 			</div>
-
-
 		</li>
 	</ul>
 </section>

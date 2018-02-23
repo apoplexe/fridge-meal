@@ -1,0 +1,32 @@
+
+<article class="form-adder-contain">
+    <form class="add-form" ng-submit="add.tool(add.newTool)">
+        <input id='tools' type="text" name="tools" value="tools" ng-model='add.newTool'>
+        <input type="submit" value="new tool">
+    </form>
+    <form class="add-form" ng-submit="add.product(add.newProduct)">
+        <input id='product' type="text" name="product" value="product" ng-model='add.newProduct'>
+        <input type="submit" value="new product">
+    </form>
+    <form class="add-form" ng-submit="add.step(add.newStep)">
+        <input id='step' type="text" name="step" value="step" ng-model='add.newStep'>
+        <input type="submit" value="new step">
+    </form>
+    <form class="add-form" ng-submit="add.recipeCategory(add.newRecipeCategory)">
+        <input id='recipe category' type="text" name="recipe category" value="recipe category" ng-model='add.newRecipeCategory'>
+        <input type="submit" value="new category">
+    </form>
+    <form class="add-form" ng-submit="add.productCategory(add.newProductCategory)">
+        <input id='product category' type="text" name="product category" value="product category" ng-model='add.newProductCategory'>
+        <input type="submit" value="new category">
+    </form>
+    <form class="add-form" ng-submit="add.recipe(add.recipeName, add.productsId)">
+        <input id='recipe name' type="text" name="recipe name" value="recipe name" ng-model='add.recipeName'>
+        <input id='category' type="text" name="category" value="category">
+        <input id='products' type="text" name="products" value="products" ng-model="add.productsId">
+        <input id='tools' type="text" name="tools" value="tools">
+        <input id='people' type="text" name="people" value="people">
+        <input id='time' type="text" name="time" value="time">
+        <input type="submit" value="new recipe">
+    </form>
+</article>

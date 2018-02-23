@@ -4,9 +4,9 @@
             <img ng-src="/img/machine/svg/{{ vm.machine }}" alt="machine">
         </div>
         <ul class="matcher-zone matcher-products">
-            <li class="match" data-draggable-dtv="draggable" id="match-{{ p.id }}" ng-repeat="p in vm.productsMatch">
+            <li class="match" data-draggable-dtv="product.id" id="match-$index" ng-repeat="product in vm.basket" ng-dblclick="vm.move(product.id, 'basket')">
                 <!-- <span class="close-product">x</span> -->
-                <img ng-src="img/fruits/svg/{{ p.url }}" alt="{{ p.name }}">
+                <img ng-src="img/fruits/svg/{{ product.image }}" alt="{{ product.name }}">
             </li>
         </ul>
     </div>

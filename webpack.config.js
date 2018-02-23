@@ -24,6 +24,11 @@ module.exports = {
                 secure: false,
                 changeOrigin: true
             },
+            "/new_tools": {
+                target: "http://localhost:5000",
+                secure: false,
+                changeOrigin: true
+            },
             "/steps": {
                 target: "http://localhost:5000",
                 secure: false,

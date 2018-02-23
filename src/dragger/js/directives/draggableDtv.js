@@ -1,27 +1,14 @@
 class draggableDtv{
   constructor(){
     this.restrict = 'A';
+    this.scope = {
+        product: '=draggableDtv'
+    };
   }
   link(scope, elem, attrs){
     const el = elem[0];
 
     el.draggable = true;
-
-    elem.on(
-        'dblclick',
-        e => {
-            let id = e.path[1].id;
-            let pre_id = id.split('-')[0];
-
-            if (pre_id === 'product') {
-                scope.vm.match(true, id);
-            } else {
-                scope.vm.match(false, id);
-            }
-
-            return false;
-        }
-    )
 
     elem.on(
       'dragstart',
