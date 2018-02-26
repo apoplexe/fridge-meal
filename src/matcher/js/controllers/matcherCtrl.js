@@ -3,7 +3,6 @@ class matcherCtrl{
         this.$scope = $scope;
         this.$rootScope = $rootScope;
         this.getterSvc = getterSvc;
-
         this.basket = [];
         this.machine = 'restaurant.svg';
         this.products = [];
@@ -31,6 +30,7 @@ class matcherCtrl{
         return (event, recipes)=>{
             if (recipes !== undefined) {
                 this.recipesList = recipes;
+                this.stepHandler();
             }
         }
     }
@@ -38,6 +38,25 @@ class matcherCtrl{
         this.getterSvc.get(this.url.recipes_match, 'products=' + this.productsId).then(
             d => {
                 this.recipesList = d.data.results;
+            }
+        );
+
+        this.stepHandler();
+    }
+    stepHandler(){
+        this.getterSvc.get(this.url.steps).then(
+            d => {
+                this.stepsList = d.data.steps;
+
+                for (let i = 0; i < this.recipesList.length; i++) {
+                    this.recipesList[i].steps = [];
+
+                    for (let j = 0; j < this.stepsList.length; j++) {
+                        if (this.stepsList[j].recipe_id === this.recipesList[i].id) {
+                            this.recipesList[i].steps.push(this.stepsList[j].description);
+                        }
+                    }
+                }
             }
         );
     }
@@ -68,23 +87,6 @@ class matcherCtrl{
 
         this.updateRecipe();
     }
-    //
-    // this.getterSvc.get(this.url.steps).then(
-    //     d => {
-    //         this.stepsList = d.data;
-    //
-    //         for (i = 0; i < this.recipesList.length; i++) {
-    //             this.recipesList[i].steps = [];
-    //
-    //             for (j = 0; j < this.stepsList.length; j++) {
-    //                 if (this.stepsList[j].recipe_id === this.recipesList[i].id) {
-    //                     this.recipesList[i].steps.push(this.stepsList[j].description);
-    //                 }
-    //             }
-    //         }
-    //     }
-    // );
-    // }
     productResult(){
         this.getterSvc.get(this.url.products)
         .then(

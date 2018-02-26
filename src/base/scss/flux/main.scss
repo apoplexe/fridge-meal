@@ -97,7 +97,7 @@
 
             .matcher {
                 border-right: rgba(186, 159, 160, 0.21176470588235294) 1px solid;
-                width: 40vw;
+                width: 50vw;
 
                 .matcher-zone{
                     height: 100%;
@@ -125,12 +125,12 @@
                 }
 
             }
-            .empty-recipe-contain{
+            .recipes-empty-contain{
                 align-items: center;
                 display: flex;
                 justify-content: center;
 
-                .empty-recipe {
+                .recipes-empty {
                     color: rgb(242, 129, 134);
                     font-size: 1.4em;
                     text-align: center;
@@ -138,33 +138,31 @@
                 }
             }
             .recipes {
-                width: 60vw;
+                width: 50vw;
 
                 .recipe-name{
                     color: rgb(242, 129, 134);
-                    font-size: 1.2em;
+                    font-size: 1.5em;
                     font-weight: 100;
                     text-transform: capitalize;
+                    line-height: 1.5em
                 }
                 .recipe-name-list{
-                    padding: 0 4%;
+                    padding: 1% 7%;
                     cursor: pointer;
                 }
-                .recipe-list{
+                .recipes-full{
                     height: 100%;
                     padding: 2% 2% 0 2%;
 
-                    .recipe-filter-list {
-                        display: flex;
-                        justify-content: space-around;
-                    }
-                    .recipe-item{
+                    .recipe-focus{
                         text-align: center;
 
                         .current-recipe{
 
                             .header-current-recipe{
                                 display: inline-flex;
+                                margin: 0% 0% 6% 0%;
 
                                 .close-recipe {
                                     color: rgba(199, 68, 105, 0.4);
@@ -176,41 +174,6 @@
                                     right: 0px;
                                 }
                             }
-                            // .switch-recipe-panel {
-                            //     display: flex;
-                            //     justify-content: space-around;
-                            //
-                            //     span {
-                            //         display: flex;
-                            //         font-size: 1.4em;
-                            //         line-height: 1.5;
-                            //         cursor: pointer;
-                            //     }
-                            //     img{
-                            //         cursor: pointer;
-                            //     }
-                            //     .switch-recipe {
-                            //         color: rgba(242, 129, 134, 0.4);
-                            //         font-weight: 600;
-                            //     }
-                            //     .switch-recipe:hover{
-                            //         color: rgb(242, 129, 134);
-                            //     }
-                            //     .close-recipe {
-                            //         color: rgba(199, 68, 105, 0.4);
-                            //         font-weight: 600;
-                            //     }
-                            //     .close-recipe:hover {
-                            //         color: rgb(199, 68, 105);
-                            //     }
-                            //     .add-favorite-recipe {
-                            //         color: rgba(199, 68, 105, 0.4);
-                            //         font-weight: 600;
-                            //     }
-                            //     .add-favorite-recipe:hover {
-                            //         color: rgb(199, 68, 105);
-                            //     }
-                            // }
 
                             .step-list{
                                 overflow: scroll;

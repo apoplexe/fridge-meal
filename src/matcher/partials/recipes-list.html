@@ -1,23 +1,23 @@
-<section ng-class="{'empty-recipe-contain': rc.emptyRecipeList}">
-	<div ng-show="rc.emptyRecipeList" class="empty-recipe">
+<section ng-class="{'recipes-empty-contain': rc.emptyRecipeList}">
+	<div ng-show="rc.emptyRecipeList" class="recipes-empty">
 		<span>Aucune recette ne correspond. <br> Invente la tienne, <br> et partage là !</span>
 	</div>
 
-	<ul ng-show="!rc.emptyRecipeList" class="recipe-list">
-		<div class="recipe-out" ng-show="!rc.recipeIn">
+	<ul ng-show="!rc.emptyRecipeList" class="recipes-full">
+		<div class="recipe-list" ng-show="vm.recipesList.length > 1 && !rc.focusRecipe">
             <h4 ng-repeat="recipe in vm.recipesList" ng-click="rc.showRecipe(recipe.name)" class="recipe-name recipe-name-list">
                 {{ recipe.name }}
             </h4>
 		</div>
 
-		<li class="recipe-item" id="recipe-{{$index}}" ng-repeat="recipe in vm.recipesList">
-			<div class="recipe-in" ng-if="recipe.name === rc.recipeNameMatch" ng-show="rc.recipeIn">
-				<div class="current-recipe" ng-show="rc.recipe">
+		<li ng-show="vm.recipesList.length === 1 || rc.focusRecipe" class="recipe-focus" id="recipe-{{$index}}" ng-repeat="recipe in vm.recipesList">
+			<div ng-if="recipe.name === rc.recipeNameMatch">
+				<div class="current-recipe">
                     <div class="header-current-recipe">
                         <h4 class="recipe-name">
                             {{ recipe.name }}
                         </h4>
-                        <span class="close-recipe" ng-click="rc.close()">x</span>
+                        <span class="close-recipe" ng-click="rc.closeFocus()" ng-show="vm.recipesList.length > 1">x</span>
                     </div>
 					<ul class="step-list">
 						<li ng-class="{'step-item-active': $first}" data-recipe-list-dtv="recipe" ng-repeat="step in recipe.steps" class="step-item">

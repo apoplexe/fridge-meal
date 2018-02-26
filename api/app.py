@@ -9,7 +9,6 @@ import re
 
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.sql.expression import func, select
-
 from models import Product, Recipe, Step, ProductCategory, RecipeCategory, Tools
 
 app = Flask(__name__)
