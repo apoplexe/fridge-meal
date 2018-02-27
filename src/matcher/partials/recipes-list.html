@@ -1,6 +1,6 @@
 <section ng-class="{'recipes-empty-contain': rc.emptyRecipeList}">
 	<div ng-show="rc.emptyRecipeList" class="recipes-empty">
-		<span>Aucune recette ne correspond. <br> Invente la tienne, <br> et partage là !</span>
+		<span>Aucune recette ne correspond. <br> Invente la tienne, <br> et partage-la !</span>
 	</div>
 
 	<ul ng-show="!rc.emptyRecipeList" class="recipes-full">
@@ -20,7 +20,7 @@
                         <span class="close-recipe" ng-click="rc.closeFocus()" ng-show="vm.recipesList.length > 1">x</span>
                     </div>
 					<ul class="step-list">
-						<li ng-class="{'step-item-active': $first}" data-recipe-list-dtv="recipe" ng-repeat="step in recipe.steps" class="step-item">
+						<li ng-class="{'step-item-active': $first}" data-step-active-dtv="recipe" ng-repeat="step in recipe.steps" class="step-item">
 							{{ step }}
 						</li>
 					</ul>

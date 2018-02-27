@@ -1,7 +1,7 @@
-<section>
+<section class="products-list">
 	<ul class="products-section">
 		<li class="products-zone-contain">
-			<ul class="products-zone" data-droppable-dtv="droppable">
+			<ul class="products-zone" data-droppable-dtv="droppableDtv">
 				<li class="product" data-draggable-dtv="product.id" id="product_{{$index}}" ng-dblclick="vm.move(product.id, 'products')" ng-repeat="product in vm.products">
 					<img ng-src="img/fruits/svg/{{ product.image }}" alt="{{ product.name }}">
 				</li>

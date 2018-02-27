@@ -9,7 +9,8 @@ class droppableDtv{
             'drop',
             e => {
                 let item = document.querySelector('#' + e.dataTransfer.getData('text'));
-                let match;
+                let list = el.classList.contains('matcher-zone') ? 'products' : 'basket';
+                let id = parseInt(e.dataTransfer.getData('id'))
 
                 el.classList.remove('dropping');
 
@@ -17,7 +18,7 @@ class droppableDtv{
                     e.stopPropagation();
                 } catch (e) {}
 
-                scope.vm.move(product);
+                scope.vm.move(id, list);
 
                 return false;
             }

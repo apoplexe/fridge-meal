@@ -1,11 +1,10 @@
 <section>
     <div class="matcher-zone" data-droppable-dtv="droppable">
         <div class="matcher-machine">
-            <img ng-click="vm.updateRecipe()" ng-src="/img/machine/svg/{{ vm.machine }}" alt="machine">
+            <img class="matcher-machine-pic" ng-click="vm.updateRecipe()" ng-src="/img/machine/svg/{{ vm.machine }}" alt="machine">
         </div>
         <ul class="matcher-zone matcher-products">
-            <li class="match" data-draggable-dtv="product.id" id="match-$index" ng-repeat="product in vm.basket" ng-dblclick="vm.move(product.id, 'basket')">
-                <!-- <span class="close-product">x</span> -->
+            <li class="match" data-draggable-dtv="product.id" id="match_{{$index}}" ng-repeat="product in vm.basket" ng-dblclick="vm.move(product.id, 'basket')">
                 <img ng-src="img/fruits/svg/{{ product.image }}" alt="{{ product.name }}">
             </li>
         </ul>

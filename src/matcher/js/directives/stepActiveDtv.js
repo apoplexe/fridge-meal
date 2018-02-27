@@ -1,6 +1,6 @@
-class recipeListDtv{
+class stepActiveDtv{
     constructor(){
-        this.restrict         = 'A';
+        this.restrict= 'A';
     }
     link(scope, elem, attrs){
         elem.on(
@@ -12,4 +12,4 @@ class recipeListDtv{
     }
 }
 
-export default recipeListDtv;
+export default stepActiveDtv;

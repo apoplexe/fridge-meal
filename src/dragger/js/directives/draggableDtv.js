@@ -15,6 +15,7 @@ class draggableDtv{
       e => {
         e.dataTransfer.effectAllowed = 'move';
         e.dataTransfer.setData('text', attrs.id);
+        e.dataTransfer.setData('id', scope.product);
 
         el.classList.add('dragged');
 
