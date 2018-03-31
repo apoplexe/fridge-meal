@@ -1,4 +1,12 @@
 {
     "presets": ["env", "react"],
-    "plugins": ["transform-object-rest-spread"]
+    "plugins": [
+        "transform-object-rest-spread",
+        ["module-resolver", {
+            "root": ["./src"],
+            "alias": {
+                "rdx": "./rdx"
+            }
+        }]
+    ]
 }

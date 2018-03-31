@@ -1,0 +1,11 @@
+.product-contain{
+    align-self: center;
+    display: flex;
+    width: 85vw;
+}
+.product-list{
+    display: flex;
+}
+.product-item{
+    margin-left: 0.75em;
+}
