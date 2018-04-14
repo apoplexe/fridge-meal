@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import style from './Basket.css';
+import style from './Basket.scss';
 
 import { connect } from "react-redux";
 import { addProducts, removeProducts, fillBasket, removeBasket } from '/rdx/actions/index';
@@ -44,13 +44,13 @@ class Baskets extends Component {
     }
     render(){
         return(
-            <div className='basket-contain' onDragOver={this.allowDrop} onDrop={this.drop}>
+            <div className='basket' onDragOver={this.allowDrop} onDrop={this.drop}>
                 <ul className='basket-list'>
                     {
                         this.props.basket.map(
                             basket => {
                                 return (
-                                    <li id={basket.id} key={basket.id} className='basket-item' onDoubleClick={this.unDrop}>{basket.name}</li>
+                                    <li id={basket.id} key={basket.id} className='basket-list-item' onDoubleClick={this.unDrop}>{basket.name}</li>
                                 );
                             }
                         )

@@ -1,0 +1,27 @@
+@import url('https://fonts.googleapis.com/css?family=Pompiere');
+
+.category-{
+    align-items: center;
+    display: flex;
+    font-size: 1.75em;
+    justify-content: space-between;
+    padding: 5%;
+    &list-{
+        text-transform: capitalize;
+        &item{
+        }
+    }
+
+    &arrow{
+        align-self: center;
+        cursor: pointer;
+        font-size: 1.5em;
+        position: relative;
+
+        &::before{
+            content: '\25EF';
+            position: absolute;
+            right: -90%;
+        }
+    }
+}

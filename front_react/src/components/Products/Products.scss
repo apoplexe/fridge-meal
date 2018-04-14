@@ -1,0 +1,15 @@
+.product{
+    align-self: center;
+
+    &-list{
+        font-size: 1.75em;
+        line-height: 3;
+        padding: 5%;
+        text-align: center;
+        text-transform: capitalize;
+
+        &-item{
+
+        }
+    }
+}

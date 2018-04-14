@@ -1,7 +1,8 @@
 import React, { Component } from "react";
-import style from './Products.css';
-
 import { connect } from "react-redux";
+import style from './Products.scss';
+import Categories from '../Categories/Categories.js';
+
 
 const mapStateToProps = state => {
     return {
@@ -20,12 +21,13 @@ class ProductsList extends Component {
         const currentProducts = this.props.products.filter(product => product.category === currentCategory[0].name);
 
         return (
-            <div className='product-contain'>
+            <div className='product'>
+                <Categories />
                 <ul className='product-list'>
                     {
                         currentProducts.map(product => {
                             return (
-                                <li id={product.id} key={product.id} className='product-item' draggable='true' onDragStart={this.drag}>{product.name}</li>
+                                <li id={product.id} key={product.id} className='product-list-item' draggable='true' onDragStart={this.drag}>{product.name}</li>
                             )
                         })
                     }

@@ -1,0 +1,19 @@
+@import url('https://fonts.googleapis.com/css?family=Marck+Script');
+
+.header{
+    align-items: center;
+    background: #ff6464;
+    color: #fff;
+    display: flex;
+    font-size: 1.75em;
+    justify-content: space-between;
+    padding: 0.5em 1em 0.5em 0.5em;
+    width: 100vw;
+
+    &-logo{
+        font-family: 'Marck Script', cursive;
+    }
+    &-icon{
+        font-size: 2em;
+    }
+}

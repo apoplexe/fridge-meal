@@ -44,6 +44,7 @@ def match(recipe, products):
 
     return True
 
+
 # /recipes?products=34,28,90
 @app.route('/recipes_match', methods=['GET'])
 def recipes_match():
@@ -81,8 +82,8 @@ def recipes_match():
 
     return jsonify(results=[result.serialize for result in results])
 
-# POST new things
 
+# POST new things
 def push(item):
     try:
         db.session.add(item)
@@ -92,6 +93,7 @@ def push(item):
         print("Duplicate entry detected!")
 
     return False
+
 
 @app.route('/new_recipe', methods=['POST'])
 def new_recipe():
@@ -108,6 +110,7 @@ def new_recipe():
 
     return jsonify(recipe=[re.serialize for re in recipe_list])
 
+
 @app.route('/new_product', methods=['POST'])
 def new_product():
     '''
@@ -122,6 +125,7 @@ def new_product():
 
     return jsonify(prod=[p.serialize for p in productsList])
 
+
 @app.route('/new_tools', methods=['POST'])
 def new_tools():
     '''
@@ -135,6 +139,7 @@ def new_tools():
     push(tools)
 
     return jsonify(toolsList=[to.serialize for to in toolsList])
+
 
 @app.route('/new_category/<type>', methods=['POST'])
 def new_category(type):
@@ -155,6 +160,7 @@ def new_category(type):
 
     return jsonify(categoryList=[ca.serialize for ca in categoryList])
 
+
 @app.route('/new_step', methods=['POST'])
 def new_step():
     '''
@@ -169,13 +175,14 @@ def new_step():
 
     return jsonify(stepList=[st.serialize for st in stepList])
 
-# GET simple list of each instance
 
+# GET simple list of each instance
 @app.route('/products')
 def products():
     productsList = Product.query.all()
 
     return jsonify(products=[p.serialize for p in productsList])
+
 
 @app.route('/recipes')
 def recipes():
@@ -183,11 +190,13 @@ def recipes():
 
     return jsonify(recipes=[p.serialize for p in recipesList])
 
+
 @app.route('/steps')
 def steps():
     stepsList = Step.query.all()
 
     return jsonify(steps=[p.serialize for p in stepsList])
+
 
 @app.route('/tools')
 def tools():
@@ -195,11 +204,13 @@ def tools():
 
     return jsonify(tools=[p.serialize for p in toolsList])
 
+
 @app.route('/recipe_category')
 def recipe_category():
     categoryList = RecipeCategory.query.all()
 
     return jsonify(recipe_category=[p.serialize for p in categoryList])
+
 
 @app.route('/product_category')
 def product_category():

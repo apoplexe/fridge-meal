@@ -5,7 +5,7 @@ let config = {};
 config.context = __dirname + '/src';
 
 config.entry = {
-    app: './index.jsx'
+    app: './index.js'
 };
 
 config.output = {
@@ -42,7 +42,7 @@ config.devServer =  {
 config.module = {
     rules: [
         {
-            test: /\jsx?$/,
+            test: /\js?$/,
             exclude: /node_modules/,
             use: {
                 loader: "babel-loader"
@@ -58,8 +58,8 @@ config.module = {
             ]
         },
         {
-            test: /\.css$/,
-            use: [ 'style-loader', 'css-loader' ]
+            test: /\.scss$/,
+            use: [ 'style-loader', 'css-loader', 'sass-loader' ]
         }
     ]
 };

@@ -1,5 +1,23 @@
-export const data = {
+const data = {
     counter: 1,
+    pages: [
+        {
+            name: 'home',
+            show: false
+        },
+        {
+            name: 'products',
+            show: true
+        },
+        {
+            name: 'recipes',
+            show: false
+        },
+        {
+            name: 'recipe',
+            show: false
+        }
+    ],
     recipes: [
         {
             id: 1,
@@ -124,3 +142,5 @@ export const data = {
         }
     ]
 };
+
+export default data;

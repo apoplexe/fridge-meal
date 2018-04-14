@@ -2,8 +2,8 @@ import React from "react";
 import { render } from "react-dom";
 import { Provider } from "react-redux";
 import store from "./rdx/stores/index";
-import App from './components/App/App.jsx';
-import './reset.css'
+import App from './components/App/App.js';
+import './reset.scss'
 
 import { selectCategories } from "./rdx/actions/index";
 //
